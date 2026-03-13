@@ -25,6 +25,17 @@
 
 # CELL ********************
 
+#test
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 from pyspark.sql.window import Window
 from pyspark.sql.functions import row_number
 
