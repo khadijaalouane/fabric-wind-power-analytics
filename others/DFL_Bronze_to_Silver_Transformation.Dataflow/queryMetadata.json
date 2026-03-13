@@ -1,0 +1,27 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "DFL_Bronze_to_Silver_Transformation",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "wind_power_data": {
+      "queryId": "8bc5316e-4cd3-4fd7-966e-40c66c3da87a",
+      "queryName": "wind_power_data",
+      "loadEnabled": false
+    },
+    "wind_power_data_DataDestination": {
+      "queryId": "6ab17ecb-65fa-461c-83cf-12dcd74850dc",
+      "queryName": "wind_power_data_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"94deae69-e792-4873-bd1f-33e716ee6e99\",\"DatasourceId\":\"13d54a72-eafe-4e4b-9c66-229260bf1223\"}"
+    }
+  ]
+}

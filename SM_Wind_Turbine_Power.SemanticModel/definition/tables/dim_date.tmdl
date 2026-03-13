@@ -1,0 +1,68 @@
+table dim_date
+	lineageTag: ee014ad3-7c94-4d60-b313-304832805265
+	sourceLineageTag: [dbo].[dim_date]
+
+	column date_id
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 794c487a-652e-4d40-9d71-4b6e1bdb50e8
+		sourceLineageTag: date_id
+		summarizeBy: none
+		sourceColumn: date_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column day
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 612b7dda-2047-4669-a0ac-9e01be95d84c
+		sourceLineageTag: day
+		summarizeBy: none
+		sourceColumn: day
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: fe51c39f-48d5-4c35-a7e0-fd921b18cf49
+		sourceLineageTag: month
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: bb2395b1-e366-49c8-bda3-1584fe08e16d
+		sourceLineageTag: quarter
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a34d7bdb-12dc-4e5c-8632-fd381cfa6b3c
+		sourceLineageTag: year
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = entity
+		mode: directLake
+		source
+			entityName: dim_date
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

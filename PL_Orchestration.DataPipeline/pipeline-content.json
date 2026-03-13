@@ -1,0 +1,100 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "1e13b47d-acd4-b7d3-4274-e2dc74156eee",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Get Daily Wind Turbine Data",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "4026201f-8ea3-907e-411b-4633d4f9e4ae",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Bronze to Silver Transformations",
+        "state": "Active",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": [
+          {
+            "activity": "Get Daily Wind Turbine Data",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "a9213243-141a-bc80-4e96-683ea0981c00",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Silver to Gold Transformations",
+        "dependsOn": [
+          {
+            "activity": "Bronze to Silver Transformations",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "PBISemanticModelRefresh",
+        "typeProperties": {
+          "method": "post",
+          "groupId": "701df2d7-7e7b-408d-926d-8a0235da76a7",
+          "datasetId": "4275b040-5289-46c7-bf48-d8444bfa80de",
+          "commitMode": "Transactional",
+          "waitOnCompletion": true,
+          "operationType": "SemanticModelRefresh"
+        },
+        "externalReferences": {
+          "connection": "733c3650-dedf-46bb-8bbb-516a6bd44b62"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Refresh Semantic Model",
+        "dependsOn": [
+          {
+            "activity": "Silver to Gold Transformations",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

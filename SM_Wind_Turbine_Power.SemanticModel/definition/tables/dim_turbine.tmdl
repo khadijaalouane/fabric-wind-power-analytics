@@ -1,0 +1,89 @@
+table dim_turbine
+	lineageTag: 13cb4717-e460-49cc-bac4-635f2ce02949
+	sourceLineageTag: [dbo].[dim_turbine]
+
+	column turbine_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 947d9d17-db9b-4221-a210-b1e8074e3c6f
+		sourceLineageTag: turbine_name
+		summarizeBy: none
+		sourceColumn: turbine_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column capacity
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 13fb0631-cf33-4123-8a9c-a35a98f39259
+		sourceLineageTag: capacity
+		summarizeBy: none
+		sourceColumn: capacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 8008a6b9-edb1-46d7-99fc-3d9f209a330f
+		sourceLineageTag: location_name
+		summarizeBy: none
+		sourceColumn: location_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: double
+		sourceProviderType: float
+		lineageTag: bcc4ebea-3202-4824-9f85-a9c32a8cbd10
+		sourceLineageTag: latitude
+		summarizeBy: none
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitude
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 9983111d-571a-43bd-a45c-780a02447789
+		sourceLineageTag: longitude
+		summarizeBy: none
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column region
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 56b77981-d773-4084-8f8c-ef799787207b
+		sourceLineageTag: region
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column turbine_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 101af35d-4b67-497c-ade8-dbba18a5ce77
+		sourceLineageTag: turbine_id
+		summarizeBy: none
+		sourceColumn: turbine_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_turbine = entity
+		mode: directLake
+		source
+			entityName: dim_turbine
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+
